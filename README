@@ -1,0 +1,29 @@
+Possible GCC Bug
+----------------
+
+This is a test case to highlight a (possible) bug in gcc 4.3 in SLES11 SP1
+
+Compiled code behaves differently with "-O2 -fPIC" flag combination. Taking
+out either of the flags makes the compiled code behave predictably.
+
+Also, commenting out certain lines in the code (highlighted as comments)
+makes the code compile predictably even in the presence of "-O2 -fPIC".
+
+--snip--
+
+blackhole:~/comp-bug # gcc --version
+gcc (SUSE Linux) 4.3.4 [gcc-4_3-branch revision 152973]
+Copyright (C) 2008 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+blackhole:~/comp-bug # make all
+gcc-4.3 -Wall -O0 -fPIC pool.c -o good
+gcc-4.3 -Wall -O2 -fPIC pool.c -o bad
+./good
+GOOD :)
+./bad
+BAD :(
+
+
+--snip--
