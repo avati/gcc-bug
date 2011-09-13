@@ -58,8 +58,10 @@ pool_new (int size, int count)
         struct list_head *head = NULL;
 
 
+        /* commenting the below line hides the bug */
         do { if (!global_init) break; } while (0);
 
+        /* calling calloc() directly hides the bug */
         pool = __calloc (sizeof (*pool), 1);
         if (!pool)
                 return NULL;

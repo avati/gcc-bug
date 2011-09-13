@@ -9,6 +9,8 @@ out either of the flags makes the compiled code behave predictably.
 Also, commenting out certain lines in the code (highlighted as comments)
 makes the code compile predictably even in the presence of "-O2 -fPIC".
 
+Other compiler versions always behave preditably for this test case.
+
 --snip--
 
 blackhole:~/comp-bug # gcc --version
