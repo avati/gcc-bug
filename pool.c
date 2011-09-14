@@ -20,6 +20,9 @@ struct pool {
 char global_init;
 
 
+/* Uncommenting the prototype with attribute masks the bug */
+//void *__calloc (size_t nmemb, size_t size) __attribute_malloc__;
+
 void *
 __calloc (size_t nmemb, size_t size)
 {
@@ -61,7 +64,6 @@ pool_new (int size, int count)
         /* commenting the below line hides the bug */
         do { if (!global_init) break; } while (0);
 
-        /* calling calloc() directly hides the bug */
         pool = __calloc (sizeof (*pool), 1);
         if (!pool)
                 return NULL;
